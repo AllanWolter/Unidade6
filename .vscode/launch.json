@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Uni06Exe02",
+            "request": "launch",
+            "mainClass": "Uni06Exe02",
+            "projectName": "Unidade6_4888eb15"
+        },
+        {
+            "type": "java",
             "name": "Uni06Exe01",
             "request": "launch",
             "mainClass": "Uni06Exe01",
