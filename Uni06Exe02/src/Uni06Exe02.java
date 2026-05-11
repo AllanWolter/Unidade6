@@ -31,6 +31,7 @@ public class Uni06Exe02 {
         return media;
     }
     private void valormaiormedia(double vetor[], double media){
+        System.out.println("A média dos valores é: " + media);
         for (int i = vetor.length - 1; i >= 0; i--){
             if (vetor[i] > media) {
                 System.err.println("O valor " + vetor[i] +" é maior que a média");
