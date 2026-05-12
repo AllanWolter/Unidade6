@@ -1,8 +1,8 @@
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class Uni05Exe03 {
-    public Uni05Exe03() {
+public class Uni06Exe03 {
+    public Uni06Exe03() {
         Scanner sc = new Scanner(System.in);
         double[] vetor = new double[3];
 
@@ -41,6 +41,6 @@ public class Uni05Exe03 {
     }
 
     public static void main(String[] args) {
-        new Uni05Exe03();
+        new Uni06Exe03();
     }
 }
