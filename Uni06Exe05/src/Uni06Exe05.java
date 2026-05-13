@@ -9,7 +9,6 @@ public class Uni06Exe05 {
         lerRespostas(vetorRapaz, vetorMoça, sc);
         int indiceAfinidade = calcularAfinidade(vetorRapaz, vetorMoça);
         escreverAfinidade(indiceAfinidade);
-
     }
 
     private String removerAcentos(String texto) {
@@ -17,31 +16,59 @@ public class Uni06Exe05 {
                 .replaceAll("[^\\x00-\\x7F]", "");
     }
 
+    private String verificacaoRapaz(String vetorRapaz[], Scanner sc) {
+        int j = 0;
+        while (vetorRapaz[j] != "sim" || vetorRapaz[j] != "nao" || vetorRapaz[j] != "ind") {
+            for (int i = 0; i < 5; i++) {
+                vetorRapaz[i] = removerAcentos(sc.next().toLowerCase());
+                j = i;
+                if (vetorRapaz[j] != "sim" || vetorRapaz[j] != "nao" || vetorRapaz[j] != "ind") {
+                    System.out.println("Resposta Inválida!");
+                }
+            }
+        }
+        return vetorRapaz[j];
+    }
+
+    private String verificacaoMoça(String vetorMoça[], Scanner sc) {
+        int j = 0;
+        while (vetorMoça[j] != "sim" || vetorMoça[j] != "nao" || vetorMoça[j] != "ind") {
+            for (int i = 0; i < 5; i++) {
+                vetorMoça[i] = removerAcentos(sc.next().toLowerCase());
+                j = i;
+                if (vetorMoça[j] != "sim" || vetorMoça[j] != "nao" || vetorMoça[j] != "ind") {
+                    System.out.println("Resposta Inválida!");
+                }
+            }
+        }
+        return vetorMoça[j];
+    }
+
     private void lerRespostas(String vetorRapaz[], String vetorMoça[], Scanner sc) {
         System.out.println("Entradas: sim, não, ind (indiferente)");
         System.out.println("Gostos do Rapaz:");
         System.out.println("Gosta de música sertaneja?");
-        vetorRapaz[0] = removerAcentos(sc.next().toLowerCase());
+        verificacaoRapaz(vetorRapaz, sc);
         System.out.println("Gosta de futebol?");
-        vetorRapaz[1] = removerAcentos(sc.next().toLowerCase());
+        verificacaoRapaz(vetorRapaz, sc);
         System.out.println("Gosta de seriados?");
-        vetorRapaz[2] = removerAcentos(sc.next().toLowerCase());
+        verificacaoRapaz(vetorRapaz, sc);
         System.out.println("Gosta de redes sociais?");
-        vetorRapaz[3] = removerAcentos(sc.next().toLowerCase());
+        verificacaoRapaz(vetorRapaz, sc);
         System.out.println("Gosta da Oktoberfest?");
-        vetorRapaz[4] = removerAcentos(sc.next().toLowerCase());
+        verificacaoRapaz(vetorRapaz, sc);
 
         System.out.println("Gostos da Moça:");
         System.out.println("Gosta de música sertaneja?");
-        vetorMoça[0] = removerAcentos(sc.next().toLowerCase());
+        verificacaoMoça(vetorMoça, sc);
         System.out.println("Gosta de futebol?");
-        vetorMoça[1] = removerAcentos(sc.next().toLowerCase());
+        verificacaoMoça(vetorMoça, sc);
         System.out.println("Gosta de seriados?");
-        vetorMoça[2] = removerAcentos(sc.next().toLowerCase());
+        verificacaoMoça(vetorMoça, sc);
         System.out.println("Gosta de redes sociais?");
-        vetorMoça[3] = removerAcentos(sc.next().toLowerCase());
+        verificacaoMoça(vetorMoça, sc);
         System.out.println("Gosta da Oktoberfest?");
-        vetorMoça[4] = removerAcentos(sc.next().toLowerCase());
+        verificacaoMoça(vetorMoça, sc);
     }
 
     private int calcularAfinidade(String vetorRapaz[], String vetorMoça[]) {
