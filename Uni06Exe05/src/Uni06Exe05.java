@@ -16,71 +16,50 @@ public class Uni06Exe05 {
                 .replaceAll("[^\\x00-\\x7F]", "");
     }
 
-    private String verificacaoRapaz(String vetorRapaz[], Scanner sc) {
-        int j = 0;
-        while (vetorRapaz[j] != "sim" || vetorRapaz[j] != "nao" || vetorRapaz[j] != "ind") {
-            for (int i = 0; i < 5; i++) {
-                vetorRapaz[i] = removerAcentos(sc.next().toLowerCase());
-                j = i;
-                if (vetorRapaz[j] != "sim" || vetorRapaz[j] != "nao" || vetorRapaz[j] != "ind") {
-                    System.out.println("Resposta Inválida!");
-                }
+    private void lerResposta(String vetor[], int indice, Scanner sc) {
+        String entrada;
+        while (true) {
+            entrada = removerAcentos(sc.next().toLowerCase());
+            if (entrada.equals("sim") || entrada.equals("nao") || entrada.equals("ind")) {
+                vetor[indice] = entrada;
+                break;
             }
+            System.out.println("Resposta inválida! Digite sim, nao ou ind.");
         }
-        return vetorRapaz[j];
-    }
-
-    private String verificacaoMoça(String vetorMoça[], Scanner sc) {
-        int j = 0;
-        while (vetorMoça[j] != "sim" || vetorMoça[j] != "nao" || vetorMoça[j] != "ind") {
-            for (int i = 0; i < 5; i++) {
-                vetorMoça[i] = removerAcentos(sc.next().toLowerCase());
-                j = i;
-                if (vetorMoça[j] != "sim" || vetorMoça[j] != "nao" || vetorMoça[j] != "ind") {
-                    System.out.println("Resposta Inválida!");
-                }
-            }
-        }
-        return vetorMoça[j];
     }
 
     private void lerRespostas(String vetorRapaz[], String vetorMoça[], Scanner sc) {
-        System.out.println("Entradas: sim, não, ind (indiferente)");
-        System.out.println("Gostos do Rapaz:");
-        System.out.println("Gosta de música sertaneja?");
-        verificacaoRapaz(vetorRapaz, sc);
-        System.out.println("Gosta de futebol?");
-        verificacaoRapaz(vetorRapaz, sc);
-        System.out.println("Gosta de seriados?");
-        verificacaoRapaz(vetorRapaz, sc);
-        System.out.println("Gosta de redes sociais?");
-        verificacaoRapaz(vetorRapaz, sc);
-        System.out.println("Gosta da Oktoberfest?");
-        verificacaoRapaz(vetorRapaz, sc);
+        String[] perguntas = {
+                "Gosta de música sertaneja?",
+                "Gosta de futebol?",
+                "Gosta de seriados?",
+                "Gosta de redes sociais?",
+                "Gosta da Oktoberfest?"
+        };
 
-        System.out.println("Gostos da Moça:");
-        System.out.println("Gosta de música sertaneja?");
-        verificacaoMoça(vetorMoça, sc);
-        System.out.println("Gosta de futebol?");
-        verificacaoMoça(vetorMoça, sc);
-        System.out.println("Gosta de seriados?");
-        verificacaoMoça(vetorMoça, sc);
-        System.out.println("Gosta de redes sociais?");
-        verificacaoMoça(vetorMoça, sc);
-        System.out.println("Gosta da Oktoberfest?");
-        verificacaoMoça(vetorMoça, sc);
+        System.out.println("Entradas válidas: sim, nao, ind (indiferente)");
+
+        System.out.println("\nGostos do Rapaz:");
+        for (int i = 0; i < 5; i++) {
+            System.out.println(perguntas[i]);
+            lerResposta(vetorRapaz, i, sc);
+        }
+
+        System.out.println("\nGostos da Moça:");
+        for (int i = 0; i < 5; i++) {
+            System.out.println(perguntas[i]);
+            lerResposta(vetorMoça, i, sc);
+        }
     }
 
     private int calcularAfinidade(String vetorRapaz[], String vetorMoça[]) {
         int indiceAfinidade = 0;
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             if (vetorRapaz[i].equals(vetorMoça[i])) {
                 indiceAfinidade += 3;
-            } else if ((!vetorRapaz[i].equals(vetorMoça[i]) && vetorRapaz[i].equals("ind"))
-                    || (!vetorMoça[i].equals(vetorRapaz[i]) && vetorMoça[i].equals("ind"))) {
+            } else if (vetorRapaz[i].equals("ind") || vetorMoça[i].equals("ind")) {
                 indiceAfinidade += 1;
-            } else if ((!vetorRapaz[i].equals(vetorMoça[i]) && !vetorRapaz[i].equals("ind"))
-                    || (!vetorMoça[i].equals(vetorRapaz[i]) && !vetorMoça[i].equals("ind"))) {
+            } else {
                 indiceAfinidade -= 2;
             }
         }
@@ -90,15 +69,15 @@ public class Uni06Exe05 {
     private void escreverAfinidade(int indiceAfinidade) {
         if (indiceAfinidade >= 15) {
             System.out.println("Casem!");
-        } else if (indiceAfinidade >= 10 && indiceAfinidade <= 14) {
+        } else if (indiceAfinidade >= 10) {
             System.out.println("Vocês têm muita coisa em comum!");
-        } else if (indiceAfinidade >= 5 && indiceAfinidade <= 9) {
+        } else if (indiceAfinidade >= 5) {
             System.out.println("Talvez não dê certo :(");
-        } else if (indiceAfinidade >= 0 && indiceAfinidade <= 4) {
+        } else if (indiceAfinidade >= 0) {
             System.out.println("Vale um encontro.");
-        } else if (indiceAfinidade <= -1 && indiceAfinidade >= -9) {
-            System.out.println("Melhor não perder tempo");
-        } else if (indiceAfinidade <= -10) {
+        } else if (indiceAfinidade >= -9) {
+            System.out.println("Melhor não perder tempo.");
+        } else {
             System.out.println("Vocês se odeiam!");
         }
     }

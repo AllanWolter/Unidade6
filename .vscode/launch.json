@@ -9,6 +9,13 @@
             "name": "Uni06Exe05",
             "request": "launch",
             "mainClass": "Uni06Exe05",
+            "projectName": "Unidade6_4888eb15"
+        },
+        {
+            "type": "java",
+            "name": "Uni06Exe05",
+            "request": "launch",
+            "mainClass": "Uni06Exe05",
             "projectName": "Unidade6_5cc47b28"
         },
         {
